@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { CocktailListComponent } from './cocktail-list/cocktail-list.component';
-import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.component';
+import { CocktailListComponent } from './cocktails-container/cocktails-list/cocktails-list.component';
+import { CocktailDetailComponent } from './cocktails-container/cocktails-details/cocktails-details.component';
 import { HeaderComponent } from './header/header.component';
+import { CocktailsContainerComponent } from './cocktails-container/cocktails-container.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     CocktailListComponent,
     CocktailDetailComponent,
-    HeaderComponent
+    HeaderComponent,
+    CocktailsContainerComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),
