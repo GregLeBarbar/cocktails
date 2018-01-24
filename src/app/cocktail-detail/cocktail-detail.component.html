@@ -1,3 +1,16 @@
-<p>
-  cocktail-detail works!
-</p>
+<div class="row">
+    <div class="col-4">
+      <img class="img-fluid" style="max-height: 150px;" [src]="cocktail.image" [alt]="cocktail.name">
+    </div>
+    <h3 class="col-8">{{ cocktail.name }}</h3>
+  </div>
+  <hr>
+  <div class="row">
+    <p class="col-12">{{ cocktail.description }}</p>
+  </div>
+  <hr>
+  <div class="row">
+    <button type="button" class="btn btn-success">
+      Editer le cocktail
+    </button>
+  </div>

@@ -23,10 +23,6 @@ Pour installer bootstrap, la manière la plus simple est décrite ici :
 https://angular5.fr/developer/58a1863e2e158e82bb85bb6a/5904d039522d7a4b87d721ea/lesson/5904d721522d7a4b87d721ec/3/2
 
 
-
-
-
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
 ## Development server
