@@ -8,7 +8,11 @@ import { CocktailDetailComponent } from './cocktails-container/cocktails-details
 import { HeaderComponent } from './header/header.component';
 import { CocktailsContainerComponent } from './cocktails-container/cocktails-container.component';
 import { ActiveDirective } from './shared/directives/active.directive';
-
+import { PanierComponent } from './panier/panier.component';
+import { IngredientsListComponent } from './panier/ingredients-list/ingredients-list.component';
+import { AppRouting } from './app.routing';
+import { PanierService } from './shared/services/panier.service';
+import { CocktailEditComponent } from './cocktails-container/cocktails-edit/cocktails-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,18 @@ import { ActiveDirective } from './shared/directives/active.directive';
     CocktailDetailComponent,
     HeaderComponent,
     CocktailsContainerComponent,
-    ActiveDirective
+    ActiveDirective,
+    PanierComponent,
+    IngredientsListComponent,
+    CocktailEditComponent,
+
   ],
   imports: [
-    BrowserModule, NgbModule.forRoot(),
+    BrowserModule, 
+    NgbModule.forRoot(), 
+    AppRouting
   ],
-  providers: [],
+  providers: [PanierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
