@@ -40,7 +40,29 @@ export class CocktailService {
 
   constructor() { }
 
-  getCocktail(index:number):Cocktail {
+  getCocktail(index:number): Cocktail {
     return this.cocktails.value[index];
   }
+
+  addCocktail(cocktail: Cocktail): void{
+    const cocktails = this.cocktails.value.slice();
+    cocktail = new Cocktail(
+      cocktail.name, 
+      cocktail.image, 
+      cocktail.description, 
+      cocktail.ingredients.map<Ingredient>(
+        ingredient  => new Ingredient(ingredient.name, ingredient.quantity)
+      )
+    )
+    cocktails.push(cocktail);
+    this.cocktails.next(cocktails);
+  }
+
+  updateCocktail(updateCocktail: Cocktail): void {
+    const cocktails = this.cocktails.value.slice();
+    const index = cocktails.map( c => c.name ).indexOf(updateCocktail.name);
+    cocktails[index] = updateCocktail;
+    this.cocktails.next(cocktails);
+  }
+
 }
