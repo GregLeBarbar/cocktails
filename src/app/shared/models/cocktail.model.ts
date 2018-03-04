@@ -2,6 +2,7 @@ import { Ingredient } from './ingredient.model';
 
 export class Cocktail {
     constructor(
+        public id: string,
         public name: string, 
         public image: string, 
         public description: string,

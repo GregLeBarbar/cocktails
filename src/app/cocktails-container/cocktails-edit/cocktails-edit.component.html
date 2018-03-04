@@ -1,4 +1,15 @@
-<form [formGroup]="cocktailForm" (ngSubmit)="createCocktail()" novalidate>
+<!-- 
+[formGroup]
+(ngSubmit)
+novalidate
+
+formControlName
+
+-->
+<form [formGroup]="cocktailForm" (ngSubmit)="createOrUpdateCocktail()" novalidate>
+  <div class="form-group">
+      <input formControlName="id" class="form-control" type="hidden" />
+  </div>
   <div class="form-group">
     <label>Nom</label>
     <input formControlName="name" class="form-control" type="text" />
@@ -12,15 +23,26 @@
     <textarea formControlName="description" class="form-control" type="text"></textarea>
   </div>
   <hr />
+  
+  <!-- Appel de la méthode addIngredient du composant cocktails-edit -->
   <button class="btn btn-success" type="button" (click)="addIngredient()">Ajouter ingrédients</button>
   <hr />
   <div formArray="ingredients">
+    <!--
+    [formGroup]="ingredient"
+
+    cocktailForm.get('ingredients').controls
+    -->
     <div [formGroup]="ingredient" class="form-group row" *ngFor="let ingredient of cocktailForm.get('ingredients').controls">
       <input placeholder="nom" formControlName="name" type="text" class="form-control col-8" />
       <input placeholder="quantité" formControlName="quantity" type="number" class="form-control col-4" />
     </div>
   </div>
   <hr />
+
+  <!-- Affiche le bouton Sauvegarder uniquement si le formulaire cocktail est valide -->
   <button [disabled]="cocktailForm.invalid" class="btn btn-primary">Sauvegarder</button>
+  
+  <!-- Permet d'obtenir la route-1 par rapport à route courante -->
   <button class="btn btn-primary" [routerLink]="['../']">Annuler</button>
 </form>

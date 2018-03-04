@@ -23,6 +23,26 @@ Pour installer bootstrap, la manière la plus simple est décrite ici :
 https://angular5.fr/developer/58a1863e2e158e82bb85bb6a/5904d039522d7a4b87d721ea/lesson/5904d721522d7a4b87d721ec/3/2
 
 
+Questions :
+
+1. Comment faire pour que le bouton sauvegarder ne soit pas actif lorsque un champ ingrédient n'est pas completé ?
+
+this.cocktailForm = this.formBuilder.group({
+      id: [cocktail.id],
+      name: [cocktail.name, Validators.required],
+      image: [cocktail.image, Validators.required],
+      description: [cocktail.description],
+      ingredients: this.formBuilder.array(
+        cocktail.ingredients.map( 
+          ingredient => this.formBuilder.group({ 
+            name: [ingredient.name, Validators.required], 
+            quantity: [ingredient.quantity, Validators.required] 
+          })
+        )
+      )
+    })
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
 ## Development server

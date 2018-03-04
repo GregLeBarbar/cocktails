@@ -1,11 +1,17 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <a class="navbar-brand" href="#">Cocktails</a>
+    <a class="navbar-brand">Cocktails</a>
     <button class="navbar-toggler navbar-toggler-right">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <!-- routerLinkActive permet d'attribuer une class css, ici 'active' -->
+                <!-- lorsque la route de l'élément html est activée  -->
+                <!-- -- -->
+                <!-- routerlink permet à l'utilisateur d'être redirigé sur la bonne route -->
+                <!-- en cliquant sur le la balise <a> -->
+                <!-- Evidement href="" est à banir car il charge complètement l'application -->
                 <a class="nav-link" routerLinkActive="active" routerLink="/cocktails">Cocktails</a>
             </li>
             <li class="nav-item">

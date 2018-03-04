@@ -1,6 +1,12 @@
-<div class="row">
+<!-- un moyen classique de gérer l'affichage en attendant qu'un cocktail soit chargé -->
+<div *ngIf="cocktail">
+  <div class="row">
     <div class="col-4">
-      <img class="img-fluid" style="max-height: 150px;" [src]="cocktail.image" [alt]="cocktail.name">
+      <!-- exemples de liaisons de propriété -->
+      <img 
+        [src]="cocktail.image" [alt]="cocktail.name"
+        class="img-fluid" 
+        style="max-height: 150px;">
     </div>
     <h3 class="col-8">{{ cocktail.name }}</h3>
   </div>
@@ -11,6 +17,7 @@
   <hr>
   <div class="row">
     <ul class="list-group col-12">
+      <!-- exemple de parcourir de liste d'éléments -->
       <li class="list-group-item list-group-item-action" *ngFor="let ingredient of cocktail.ingredients">
         {{ ingredient.name }} <span class="badge badge-default badge-pill ml-auto">{{ ingredient.quantity }}</span>
       </li>
@@ -18,10 +25,13 @@
   </div>
   <hr>
   <div class="row">
+    <!-- Exemple de route pour l'édition d'un cocktail -->
     <button type="button" class="btn btn-success" [routerLink]="getUrl()">
       Editer le cocktail
     </button>
+    <!-- Exemple d'appel à une méthode du composant pour ajouter les ingrédients du cocktail dans le panier -->
     <button type="button" class="btn btn-secondary ml-auto" (click)="addPanier(cocktail.ingredients)">
         Ajouter au panier
     </button>
   </div>
+</div>

@@ -1,14 +1,32 @@
 <div class="row">
   <div class="list-group col-12">
-    <a 
-      *ngFor="let cocktail of cocktails;let index = index" 
-      [routerLink]="[index]"  
+    <!-- exemple de double data-binding --> 
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Chercher un cocktail..."
+      [(ngModel)]="search">
+    <hr>
+    <!--
+    Exemple d'utilisation du :
+    - custom pipe | filter:search
+    - routerLink en ajoutant à la route courante l'id du cocktail
+    -->
+    <div
+      *ngFor="let cocktail of cocktails | filter:search" 
+      [routerLink]="[cocktail.id]"  
       routerLinkActive="active"
-      class="list-group-item list-group-item-action"> {{ cocktail.name}} </a>
+      class="list-group-item"> {{ cocktail.name}}
+      <!-- exmple d'appel à la méthode delete du composant -->
+      <button type="button" class="close ml-auto" aria-label="Close" (click)="delete(cocktail.id)">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   </div>
 </div>
 <hr>
 <div class="row">
+  <!-- autre exemple de routerLink qui ajoute new à la route courante -->
   <button class="btn btn-success" [routerLink]="['new']">
     Ajouter un cocktail
   </button>

@@ -1,28 +1,34 @@
+import { Subscription } from 'rxjs/Subscription';
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
 import { Ingredient } from '../../shared/models/ingredient.model';
 import { PanierService } from '../../shared/services/panier.service';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-ingredients-list',
-  templateUrl: './ingredients-list.component.html',
-  styleUrls: ['./ingredients-list.component.css']
+  templateUrl: './ingredients-list.component.html'
 })
 export class IngredientsListComponent implements OnInit, OnDestroy {
 
-  public ingredients: Ingredient[] = [ new Ingredient('lemon', 2)];
+  public ingredients: Ingredient[] = [];
   private subscription: Subscription;
 
-  constructor(private panierService: PanierService) { }
+  // Injection du service panier 
+  constructor(private panierService: PanierService) {}
 
   ngOnInit() {
-    this.subscription = this.panierService.panier.subscribe( (ingredients: Ingredient[]) => {
-      this.ingredients = ingredients;
-    } )
+    this.subscription = this.panierService.panier.subscribe( 
+      (ingredients: Ingredient[]) => {
+        this.ingredients = ingredients;
+      } 
+    )
   }
 
   ngOnDestroy() {
+    // lorsque l’Observer n’a plus besoin de recevoir de valeurs, on fait un appel à unsubscribe
+    // pour éviter de gaspiller des ressources en créant des fuites mémoires.
     this.subscription.unsubscribe();
   }
-
 }
