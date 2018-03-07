@@ -1,13 +1,11 @@
+/**
+ * Ce module est notre module root.
+ * Il est appelé par main.ts
+ */
 import { AppComponent } from './app.component';
-import { CocktailListComponent } from './cocktails-container/cocktails-list/cocktails-list.component';
-import { CocktailDetailComponent } from './cocktails-container/cocktails-details/cocktails-details.component';
 import { HeaderComponent } from './header/header.component';
-import { CocktailsContainerComponent } from './cocktails-container/cocktails-container.component';
-import { ActiveDirective } from './shared/directives/active.directive';
 import { PanierComponent } from './panier/panier.component';
 import { IngredientsListComponent } from './panier/ingredients-list/ingredients-list.component';
-import { CocktailEditComponent } from './cocktails-container/cocktails-edit/cocktails-edit.component';
-import { FilterPipe } from './shared/pipes/filter.pipe';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -16,32 +14,35 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRouting } from './app.routing';
 
+import { CocktailModule } from './cocktails-container/cocktail.module'
+
 import { PanierService } from './shared/services/panier.service';
 
 
 @NgModule({
+  // Dans declarations, on ne peut mettre que des pipes, des components ou des directives
+  // un declarable (pipe, component ou directive) ne peut être déclaré que dans un module
   declarations: [
     AppComponent,
-    CocktailListComponent,
-    CocktailDetailComponent,
     HeaderComponent,
-    CocktailsContainerComponent,
     // ActiveDirective, Cette directive est inutile depuis la mise en place des routes
     PanierComponent,
-    IngredientsListComponent,
-    CocktailEditComponent,
-    FilterPipe,
+    IngredientsListComponent
   ],
+  // Tous les modules à importer pour le bon fonctionnement de app.module
   imports: [
-    BrowserModule, 
-    NgbModule.forRoot(), 
-    AppRouting,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    BrowserModule, // BrowserModule import CommonModule => CommonModule est accessible
+    NgbModule.forRoot(), // pour bootstrap 
+    AppRouting, // Module pour les routes
+    FormsModule, 
+    ReactiveFormsModule, // pour la gestion des formulaires data-driven
+    HttpClientModule, // pour la gestion des appels HTTP
+    CocktailModule // Notre module cocktail
   ],
   // En définissant ici le service panier, ce dernier est présent dans tout le module
   providers: [PanierService],
+  // Il n'y a que le module root qui possède un bootstrap.
+  // AppComponent aura le routlet parent
   bootstrap: [AppComponent]
 })
 export class AppModule { }
